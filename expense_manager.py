@@ -1,22 +1,23 @@
 import csv
+import os
 
-expenses = []
-
-
-def add_expense(amount, category, description, date):
-    expenses.append({
-        "amount": amount,
-        "category": category,
-        "description": description
-    })
+EXPENSES = []
+EXPENSES_FILE = os.path.join(os.path.dirname(__file__), "expenses.csv")
 
 
-def write_to_csv():
-    with open("expenses.csv", "w") as file:
+# def add_expense(amount: int, category: str, description: str, date: str) -> str:
+#     EXPENSES.append({
+#         "amount": amount,
+#         "category": category,
+#         "description": description,
+#         "date": date
+#     })
+
+
+def write_to_csv(amount, category, description, date):
+    with open(EXPENSES_FILE, "w") as file:
         writer = csv.writer(file)
-        writer.writerow(["Amount", "Category", "Description", "date"])
-        for expense in expenses:
-            writer.writerow([expense["amount"], expense["category"], expense["description"]])
+        writer.writerow([amount, category, description, date])
 
 
 
